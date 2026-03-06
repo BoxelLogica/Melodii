@@ -35,5 +35,10 @@ The bottom screen serves as a functional interface, providing playback controls,
 
 Melodii is an attempt to recreate the whimsical, and tactile feel of classic Nintendo apps while making use of Android's flexibility.
 
+## **Releases**<br>
+Nothing so far, the project is still in very early development but check back later!
+
+
 **Credits and Acknowledgments**
 - Special thanks to [Tycon_Xon](https://github.com/TyconXon) for helping me make sense of Android Studio and other things.
+
