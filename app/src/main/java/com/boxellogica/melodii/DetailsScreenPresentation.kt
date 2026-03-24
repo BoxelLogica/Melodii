@@ -18,7 +18,7 @@ class DetailsScreenPresentation(
     }
 
 
-    fun updateInfo(text: String) {
-        findViewById<TextView>(R.id.detailsScreenText).text = text
-    }
+//    fun updateInfo(text: String) {
+//        findViewById<TextView>(R.id.detailsScreenText).text = text
+//    }
 }

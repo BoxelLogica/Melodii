@@ -1,5 +1,6 @@
 package com.boxellogica.melodii
 
+import android.annotation.SuppressLint
 import android.hardware.display.DisplayManager
 import android.os.Build
 import android.os.Bundle
@@ -17,8 +18,11 @@ class MainActivity : ComponentActivity() {
     private var detailsScreenPresentation: DetailsScreenPresentation? = null
 
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        ensureOnMainDisplay()
 
         val windowInsetsController =
             WindowCompat.getInsetsController(window, window.decorView)  // Gets View Controller for System
@@ -52,38 +56,51 @@ class MainActivity : ComponentActivity() {
     }
 
 
-
-    //
-    // SET-UP DISPLAY
     @RequiresApi(Build.VERSION_CODES.R)
     private fun setupPresentation() {
+
         val displayManager = getSystemService(DISPLAY_SERVICE) as DisplayManager
-        val displayList = displayManager.displays
+        val displays = displayManager.displays
 
-        if (displayList.size > 1) {
-            var currentDisplayId = display?.displayId
-            var secondDisplay: Display? = null
+        if (displays.size < 2) return
 
-            if (currentDisplayId == 0) {
-                secondDisplay = displayList[1]
+        val secondDisplay = displays.firstOrNull {it.displayId != Display.DEFAULT_DISPLAY} ?: return
+
+        Log.d("DisplayCheck", "Main display: ${display?.displayId}")
+        Log.d("DisplayCheck", "Presentation display: ${secondDisplay.displayId}")
+
+        detailsScreenPresentation = DetailsScreenPresentation(this, secondDisplay).apply {
+            window?.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+            )
+            show()
+        }
+
+//        detailsScreenPresentation?.updateInfo("Details")
+    }
+
+
+
+    @SuppressLint("UnsafeIntentLaunch")
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun ensureOnMainDisplay() {
+        val currentDisplayId = display?.displayId ?: return
+
+        if (currentDisplayId != Display.DEFAULT_DISPLAY) {
+
+            val options = android.app.ActivityOptions.makeBasic().apply {
+                launchDisplayId = Display.DEFAULT_DISPLAY
             }
-            else {
-                secondDisplay = displayList[0]
 
-            }
-            setContentView(R.layout.functional_screen_layout)
-            Log.d("DisplayCheck", "Activity is on Display: $currentDisplayId")
-            Log.d("SecondaryDisplayCheck", "SecondaryDisplay is: $secondDisplay")
+            val intent = intent
+            intent.addFlags(
+                android.content.Intent.FLAG_ACTIVITY_NEW_TASK or
+                        android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+            )
 
-            detailsScreenPresentation = DetailsScreenPresentation(this, secondDisplay).apply {
-                window?.setFlags(
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                )
-                show()
-            }
-
-            detailsScreenPresentation?.updateInfo("Details")
+            startActivity(intent, options.toBundle())
+            finish()
         }
     }
 }
