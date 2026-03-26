@@ -8,14 +8,14 @@ import android.util.Log
 import android.view.Display
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
 
 class MainActivity : ComponentActivity() {
-    private var detailsScreenPresentation: DetailsScreenPresentation? = null
+    private var secondScreenPresentation: SecondScreenPresentation? = null
 
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -24,29 +24,21 @@ class MainActivity : ComponentActivity() {
 
         ensureOnMainDisplay()
 
+        enableEdgeToEdge()
         val windowInsetsController =
-            WindowCompat.getInsetsController(window, window.decorView)  // Gets View Controller for System
+            WindowCompat.getInsetsController(window, window.decorView)
         windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE  // Set bars to hide automatically
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())   // Hide now
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
 
         setContentView(R.layout.functional_screen_layout)
     }
-
-
-
-// TODO
-//    FIX ISSUE WITH LAUNCHING ON BOTTOM SCREEN
-//    ADD FUNCTIONALITY TO SWAP SCREEN
-
-
 
     //
     //  FIX GHOST REMAINING ON SECOND DISPLAY
     override fun onPause() {
         super.onPause()
-        detailsScreenPresentation?.dismiss()
-        detailsScreenPresentation = null
+        secondScreenPresentation?.dismiss()
+        secondScreenPresentation = null
     }
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onResume() {
@@ -69,13 +61,14 @@ class MainActivity : ComponentActivity() {
         Log.d("DisplayCheck", "Main display: ${display?.displayId}")
         Log.d("DisplayCheck", "Presentation display: ${secondDisplay.displayId}")
 
-        detailsScreenPresentation = DetailsScreenPresentation(this, secondDisplay).apply {
-            window?.setFlags(
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-            )
-            show()
-        }
+        window.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
+
+
+        setContentView(R.layout.details_screen_layout)
+        secondScreenPresentation = SecondScreenPresentation(this, secondDisplay)
+        secondScreenPresentation?.show()
+        secondScreenPresentation?.afterCreate()
+
 
 //        detailsScreenPresentation?.updateInfo("Details")
     }

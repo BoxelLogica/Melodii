@@ -4,4 +4,6 @@
     <string name="functionalscreentext">FunctionalScreenText</string>
     <string name="detailsscreentext">DetailsScreenText</string>
     <string name="background_image_with_wet_wood">Background Image with wet wood</string>
+    <string name="backwards">backwards</string>
+    <string name="forwards">forwards</string>
 </resources>
