@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <!-- The bitmap element becomes the drawable for this item -->
+    <bitmap
+        android:src="@drawable/pattern_dot_white"
+        android:tileMode="repeat" />
+</item>
+    <item>
+        <shape android:shape="rectangle" >
+            <gradient
+                android:angle="90"
+                android:endColor="#ededed"
+                android:startColor="#b5b5b5" />
+        </shape>
+    </item>
+</layer-list>

@@ -67,7 +67,6 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.details_screen_layout)
         secondScreenPresentation = SecondScreenPresentation(this, secondDisplay)
         secondScreenPresentation?.show()
-        secondScreenPresentation?.afterCreate()
 
 
 //        detailsScreenPresentation?.updateInfo("Details")

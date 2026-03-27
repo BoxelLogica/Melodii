@@ -5,7 +5,7 @@
     android:id="@+id/functionalConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pattern_white_grid"
+    android:background="@drawable/background_dotted_gradient"
     android:minHeight="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,38 +30,44 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/leftDynamicBtn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Button"
-                app:layout_constraintBottom_toTopOf="@+id/button9"
+                android:layout_margin="4dp"
+                android:text="@string/placeholder"
+                app:layout_constraintBottom_toTopOf="@+id/backBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintVertical_bias="0.5"
+                tools:ignore="VisualLintButtonSize" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/backBtn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Button"
+                android:layout_margin="4dp"
+                android:text="@string/back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button8"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toBottomOf="@+id/leftDynamicBtn"
+                app:layout_constraintVertical_bias="0.5"
+                tools:ignore="VisualLintButtonSize" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/dockCenter"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="Button"
+            android:layout_margin="4dp"
+            android:text="@string/placeholder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/dockRight"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/dockLeft"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintButtonSize" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/dockRight"
@@ -74,11 +80,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/rightDynamicBtn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Button"
-                app:layout_constraintBottom_toTopOf="@+id/button11"
+                android:layout_margin="4dp"
+                android:text="@string/placeholder"
+                app:layout_constraintBottom_toTopOf="@+id/settingsBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -86,15 +93,17 @@
                 tools:ignore="VisualLintButtonSize" />
 
             <Button
-                android:id="@+id/button11"
+                android:id="@+id/settingsBtn"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="Button"
+                android:layout_margin="4dp"
+                android:text="@string/settings"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button10"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintTop_toBottomOf="@+id/rightDynamicBtn"
+                app:layout_constraintVertical_bias="0.5"
+                tools:ignore="VisualLintButtonSize" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,28 +117,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageButton
+        <Button
             android:id="@+id/backwardsBtn"
             android:layout_width="56dp"
             android:layout_height="48dp"
-            android:background="#D9D9D9"
+            android:background="@drawable/seek_backward_interactive"
             android:contentDescription="@string/backwards"
-            android:src="@drawable/seek_backward"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/seekBar"
+            app:layout_constraintEnd_toStartOf="@+id/mainSeekBar"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            tools:ignore="ImageContrastCheck" />
+            app:layout_constraintVertical_bias="0.5" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/mainSeekBar"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:background="#F4F4f4"
             android:progressTint="#F98729"
-            android:thumb="@drawable/seek_thumb"
+            android:thumb="@drawable/seek_thumb_interactive"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/forwardsBtn"
             app:layout_constraintHorizontal_bias="0.5"
@@ -137,20 +144,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-        <ImageButton
+        <Button
             android:id="@+id/forwardsBtn"
             android:layout_width="56dp"
             android:layout_height="48dp"
-            android:background="#D9D9D9"
+            android:background="@drawable/seek_forward_interactive"
             android:contentDescription="@string/forwards"
-            android:src="@drawable/seek_forward"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/seekBar"
+            app:layout_constraintStart_toEndOf="@+id/mainSeekBar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            tools:ignore="ImageContrastCheck" />
+            app:layout_constraintVertical_bias="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,4 +6,7 @@
     <string name="background_image_with_wet_wood">Background Image with wet wood</string>
     <string name="backwards">backwards</string>
     <string name="forwards">forwards</string>
+    <string name="back">Back</string>
+    <string name="settings">Settings</string>
+    <string name="placeholder">PLACEHOLDER</string>
 </resources>
