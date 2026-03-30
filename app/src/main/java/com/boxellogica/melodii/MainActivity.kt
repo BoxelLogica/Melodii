@@ -10,30 +10,40 @@ import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
 
 
 class MainActivity : ComponentActivity() {
+
+
+
+
+
     private var secondScreenPresentation: SecondScreenPresentation? = null
 
 
+
+
+
+
+    // WHEN APP STARTED
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ensureOnMainDisplay()
-
         enableEdgeToEdge()
-        val windowInsetsController =
-            WindowCompat.getInsetsController(window, window.decorView)
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-
+        fixScreens()
         setContentView(R.layout.functional_screen_layout)
     }
 
-    //
+
+
+
+
+
+
+
+
+
     //  FIX GHOST REMAINING ON SECOND DISPLAY
     override fun onPause() {
         super.onPause()
@@ -48,6 +58,15 @@ class MainActivity : ComponentActivity() {
     }
 
 
+
+
+
+
+
+
+
+
+    // SET UP THE PRESENTATION ON THE SECOND SCREEN
     @RequiresApi(Build.VERSION_CODES.R)
     private fun setupPresentation() {
 
@@ -67,16 +86,21 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.details_screen_layout)
         secondScreenPresentation = SecondScreenPresentation(this, secondDisplay)
         secondScreenPresentation?.show()
-
-
-//        detailsScreenPresentation?.updateInfo("Details")
     }
 
 
 
+
+
+
+
+
+
+
+    // "RE-LAUNCHES" APP ON TOP SCREEN IF OPENED ON BOTTOM
     @SuppressLint("UnsafeIntentLaunch")
     @RequiresApi(Build.VERSION_CODES.R)
-    private fun ensureOnMainDisplay() {
+    private fun fixScreens() {
         val currentDisplayId = display?.displayId ?: return
 
         if (currentDisplayId != Display.DEFAULT_DISPLAY) {

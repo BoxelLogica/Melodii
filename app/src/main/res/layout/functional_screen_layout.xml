@@ -5,113 +5,159 @@
     android:id="@+id/functionalConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_dotted_gradient"
+    android:background="@drawable/pattern_dot_white"
     android:minHeight="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dock"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:background="#fb8829"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextSizeCheck">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dockLeft"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dockLeftCard"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="-16dp"
+            android:layout_marginBottom="-16dp"
+            android:backgroundTint="#4E95D2"
+            app:cardCornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/dockCenter"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintBounds">
 
-            <Button
-                android:id="@+id/leftDynamicBtn"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="4dp"
-                android:text="@string/placeholder"
-                app:layout_constraintBottom_toTopOf="@+id/backBtn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                tools:ignore="VisualLintButtonSize" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dockLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:paddingStart="0dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp">
 
-            <Button
-                android:id="@+id/backBtn"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="4dp"
-                android:text="@string/back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/leftDynamicBtn"
-                app:layout_constraintVertical_bias="0.5"
-                tools:ignore="VisualLintButtonSize" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/leftDynamicBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:elevation="10dp"
+                    android:text="@string/ldynbtn"
+                    android:translationZ="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/backBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:ignore="VisualLintButtonSize,DuplicateSpeakableTextCheck" />
+
+                <Button
+                    android:id="@+id/backBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:elevation="10dp"
+                    android:text="@string/back"
+                    android:translationZ="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/leftDynamicBtn"
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:ignore="VisualLintButtonSize" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/dockCenter"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="4dp"
-            android:text="@string/placeholder"
+            android:elevation="10dp"
+            android:text="@string/mdynbtn"
+            android:translationZ="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/dockRight"
+            app:layout_constraintEnd_toStartOf="@+id/dockRightCard"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/dockLeft"
+            app:layout_constraintStart_toEndOf="@+id/dockLeftCard"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="VisualLintButtonSize" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dockRight"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dockRightCard"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="-16dp"
+            android:layout_marginBottom="-16dp"
+            android:backgroundTint="#4E95D2"
+            app:cardCornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/dockCenter"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VisualLintBounds">
 
-            <Button
-                android:id="@+id/rightDynamicBtn"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="4dp"
-                android:text="@string/placeholder"
-                app:layout_constraintBottom_toTopOf="@+id/settingsBtn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                tools:ignore="VisualLintButtonSize" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dockRight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="0dp">
 
-            <Button
-                android:id="@+id/settingsBtn"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="4dp"
-                android:text="@string/settings"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rightDynamicBtn"
-                app:layout_constraintVertical_bias="0.5"
-                tools:ignore="VisualLintButtonSize" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/rightDynamicBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="4dp"
+                    android:elevation="10dp"
+                    android:text="@string/rdynbtn"
+                    android:translationZ="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/settingsBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:ignore="VisualLintButtonSize" />
+
+                <Button
+                    android:id="@+id/settingsBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:elevation="10dp"
+                    android:text="@string/settings"
+                    android:translationZ="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rightDynamicBtn"
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:ignore="VisualLintButtonSize" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/controlBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#D36100"
+        android:layoutDirection="ltr"
         android:padding="4dp"
         app:layout_constraintBottom_toTopOf="@+id/dock"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +181,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:background="#F4F4f4"
-            android:progressTint="#F98729"
+            android:progressTint="#4E95D2"
             android:thumb="@drawable/seek_thumb_interactive"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/forwardsBtn"

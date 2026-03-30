@@ -9,4 +9,8 @@
     <string name="back">Back</string>
     <string name="settings">Settings</string>
     <string name="placeholder">PLACEHOLDER</string>
+    <string name="album_cover">Album Cover</string>
+    <string name="mdynbtn">MDynBtn</string>
+    <string name="ldynbtn">LDynBtn</string>
+    <string name="rdynbtn">RDynBtn</string>
 </resources>
